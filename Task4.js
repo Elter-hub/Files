@@ -195,32 +195,25 @@ changePosition(vehicles, 1)
 changePosition(vehicles, 3)
 // // - *** створити функцію яка буде переносити елементи з значенням 0 у кінець маисву. Зберігаючи при цьому порядок не нульових значень.
 // Двожина масиву від 2 до 100
-let array = [];
-let zerosArray = [];
-let countZero = 0;
-let arrayLength = Math.round(Math.random() * 98) + 2;
-console.log(arrayLength)
-function awayZeros(){
-    for (let i = 0; i < arrayLength ; i++) {
-        let number = Math.floor(Math.random() * 3);
-        if (number === 0){
-            zerosArray.push(number);
-            countZero += 1;
+
+let someArray =[1, 0, 6, 0, 3];
+let anotherArray = [0,1,2,3,4] ;
+let oneMoreArray = [0,0,1,0] ;
+function sortZero(array) {
+    let newArray = [];
+    for (let i = array.length - 1 ; i >= 0; i--) {
+        if (array[i] === 0) {
+            newArray.push(array[i])
         }else {
-            array[i - countZero] = number;
+            newArray.unshift(array[i])
         }
     }
-    for (each of zerosArray){
-        array[array.length]  = each;
-    }
-    console.log(array);
-    console.log(zerosArray)
+    console.log(newArray)
 }
-awayZeros();
-// Приклад
-// [1,0,6,0,3] => [1,6,3,0,0]
-// [0,1,2,3,4] => [1,2,3,4,0]
-// [0,0,1,0]   => [1,0,0,0]
+sortZero(someArray);
+sortZero(anotherArray);
+sortZero(oneMoreArray);
+
 //(на основі минулого ДЗ)
 // **- функція приймає 2 масиви з рівною кількістю об'єктів та з'єднює в один об'єкт користувача та місто з відповідними "id" та "user_id",
 // та повертає масив цих з'єднаних об'єктів.
