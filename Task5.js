@@ -378,7 +378,6 @@ function Prince(name, age, findedBootSize, findCinderella) {
         this.age = age;
         this.boot = findedBootSize;
         this.findCinderella = function FindCinderella(findCinderella) {
-            findCinderella = array;
             for (let some of array){
                 if (some.footSize === findedBootSize){
                     console.log(`Cinderella is ${some.name}`)
