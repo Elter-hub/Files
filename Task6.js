@@ -1,59 +1,47 @@
 // - создать массив с 20 числами.
 let array = [16, 17, 1, 2,10, 11, 12, 3, 4, 5, 6, 7, 8, 9,  13, 14, 15,  18, 19, 20];
+
 // -- при помощи метода sort отсортировать массив.
 let incrementingOrder = array.sort((a, b) => a - b)
 console.log(incrementingOrder)
+
 // -- при помощи метода sort и колбека отсортировать массив в ниспадающем напралении.
-let decrementingOrder = array.sort(function (a, b) {
-    return b - a;})
-console.log(decrementingOrder)
+let decrementingOrder = array.sort( (a, b) => b - a);
+console.log(decrementingOrder);
+
 // -- при помощи filter получить числа кратные 3
-let divByThree = array.filter(function (num) {
-    if (num % 3 === 0) {
-        return num
-    }
-})
-console.log(divByThree)
+let divByThree = array.filter( (num) => num % 3 === 0);
+console.log(divByThree);
+
 // -- при помощи filter получить числа кратные 10
-let divByTen = array.filter(function (num) {
-    if (num % 10 === 0) {
-        return num
-    }
-})
-console.log(divByTen)
+let divByTen = array.filter((num) => num % 10 === 0);
+console.log(divByTen);
+
 // -- перебрать (проитерировать) массив при помощи foreach()
-let numbers = array.forEach(function (num) {
-     return console.log(num)
-})
+let numbers = array.forEach( (num) => console.log(num));
 
 // -- перебрать массив при помощи map() и получить новый массив в котором все значения будут в 3 раза больше
-//
 
-let map = array.map(function (num) {
-    return num * 3;
-})
-console.log(map)
+let map = array.map((num) =>{return num * 3})
+console.log(map);
+
 // - создать массив со словами на 15-20 элементов.
 let words = ['if', 'any', 'other', 'else', 'some', 'new', 'every', 'lot', 'little', 'one', 'eye', 'lip', 'it', 'old', 'year', 'bot']
 // -- отсортировать его по алфавиту в восходящем порядке.
 let sort = words.sort()
 console.log(sort)
+
 // -- отсортировать его по алфавиту  в нисходящем порядке.
 let minus = words.sort().reverse();
 console.log(minus);
-// -- отфильтровать слова длиной менее 4х символов
-let short = words.filter(function (word) {
-    if (word.length <= 4){
-        return word;
-    }
-})
-console.log(short)
-// -- перебрать массив при помощи map() и получить новый массив в котором все значения будут со знаком "!" в конце
 
-let exclamation = words.map(function (word) {
-    return word + '!'
-})
-console.log(exclamation)
+// -- отфильтровать слова длиной менее 4х символов
+let short = words.filter((word) => word.length <= 3);
+console.log(short);
+
+// -- перебрать массив при помощи map() и получить новый массив в котором все значения будут со знаком "!" в конце
+let exclamation = words.map((word) => word + '!');
+console.log(exclamation);
 
 // Все робити через функції масивів (foreach, map ...тд)
 // Дан масив :
@@ -70,65 +58,43 @@ console.log(exclamation)
         {name: 'olya', age: 31, status: false},
         {name: 'max', age: 31, status: true} ];
 // - відсортувати його за  віком (зростання , а потім окремо спадання)
-let youngest = users.sort(function (a , b) {
-    return a.age - b.age;
-})
+let youngest = users.sort( (a , b) => a.age - b.age);
 console.log(youngest);
 
-let oldest = users.sort(x, y, function (x ,y ) {
-    return y.age - x.age;
-})
+let oldest = users.sort((x ,y ) => y.age - x.age);
 console.log(oldest);
 // - відсортувати його за кількістю знаків в імені  (зростання , а потім окремо спадання)
-let shortestName = users.sort(function (a, b) {
-    return a.name.length - b.name.length
-})
+let shortestName = users.sort((a, b) => a.name.length - b.name.length);
 console.log(shortestName);
 
-let longestName = users.sort(function (a, b) {
-    return b.name.length - a.name.length
-})
+let longestName = users.sort((a, b) => b.name.length - a.name.length);
 console.log(longestName);
 // - пройтись по ньому та додати кожному юзеру поле id - яке характеризує унікальний індентифікатор (По якому принципу
 // його створювати - ваше рішення), та зберегти це в новий масив (первинний масив залишиться без змін)
-let newUsers = [];
-for (let i = 0; i < users.length; i++){
-    users[i].id = users.length - i;
-    newUsers.push(users[i])
-}
-console.log(newUsers)
-
 // - відсортувати його за індентифікатором
 
-let sortById = newUsers.sort(function (user1, user2) {
-    return user1.id - user2.id
-})
+let addId = users.map((value, index) => value.id = index + 1);
+console.log(users);
+let sortById = users.sort((user1, user2) => user2.id - user1.id);
 console.log(sortById)
 // -- наисать функцию калькулятора с 2мя числами и колбеком
 
-function calculateTwo(a, b, callback) {
+function calculateTwo(a, b, callback)  {
     console.log(callback(a, b));
 }
-
-calculateTwo(20, 30, function (a, b) {
-    return a**2 - b**2
-})
+calculateTwo(20, 30, (a, b) => a**2 - b**2)
 
 // -- наисать функцию калькулятора с 3мя числами и колбеком
 //
 function calculateThree(a, b, c, callback) {
     console.log(callback(a, b, c));
 }
-calculateThree(20, 30, 15,function (a, b, c) {
-    return a**2 - b**2 + c**3
-})
+calculateThree(20, 30, 15, (a, b, c) => a**2 - b**2 + c**3);
 // =============================================
 // =============================================
 // =============КЛАССНАЯ РАБОТА=================
 // =============================================
 // =============================================
-
-
 
 
 let cars = [
@@ -148,72 +114,39 @@ let cars = [
 // Відфільтрувати масив за наступними крітеріями :
 //     - двигун більше 3х літрів
 
-let engineFilter = cars.filter((car) =>{
-    if(car.volume >= 3){
-        return console.log(car)
-    }
-})
+let engineFilter = cars.filter((car) => car.volume >= 3);
+console.log(engineFilter)
 // - двигун = 2л
-let engine = cars.filter((car) =>{
-    if(car.volume === 2){
-        return console.log(car)
-    }
-})
+let engine = cars.filter((car) => car.volume === 2);
+console.log(engine);
 // - виробник мерс
-let mers = cars.filter((car) =>{
-    if(car.producer === 'mercedes'){
-        return console.log(car)
-    }
-})
+let mers = cars.filter((car) => car.producer === 'mercedes');
+console.log(mers);
 // - двигун більше 3х літрів + виробник мерседес
-let mersBig = cars.filter((car) =>{
-    if(car.producer === 'mercedes' && car.volume >= 3){
-        return console.log(car)
-    }
-})
+let mersBig = cars.filter((car) => car.producer === 'mercedes' && car.volume >= 3);
+console.log(mersBig);
 // - двигун більше 3х літрів + виробник субару
-let subaru = cars.filter((car) =>{
-    if(car.producer === 'subaru' && car.volume >= 3){
-        return console.log(car)
-    }
-})
+let subaru = cars.filter((car) => car.producer === 'subaru' && car.volume >= 3);
+console.log(subaru);
 // - сили більше ніж 300
-let horsePower = cars.filter((car) => {
-    if (car.power > 300){
-        return console.log(car);
-    }
-})
+let horsePower = cars.filter((car) => car.power > 300);
+console.log(horsePower);
 // - сили більше ніж 300 + виробник субару
-let horsePower = cars.filter((car) => {
-    if (car.power > 300 && car.producer === 'subaru'){
-        return console.log(car);
-    }
-})
+let horsePower = cars.filter((car) => car.power > 300 && car.producer === 'subaru');
+console.log(horsePower);
 // - мотор серіі ej
-let engFilter = cars.filter((car) => {
-    if (car.engine.includes('ej')){
-        return console.log(car);
-    }
-})
+let engFilter = cars.filter((car) => car.engine.includes('ej'));
+console.log(engFilter);
 // - сили більше ніж 300 + виробник субару + мотор серіі ej
-let filterHorsePower = cars.filter((car) => {
-    if (car.power > 300 && car.producer === 'subaru' && car.engine.includes('ej')){
-        return console.log(car);
-    }
-})
+let filterHorsePower = cars.filter((car) => car.power > 300 && car.producer === 'subaru' && car.engine.includes('ej'));
+console.log(filterHorsePower);
 // - двигун меньше 3х літрів + виробник мерседес
-let mersBig = cars.filter((car) =>{
-    if(car.producer === 'mercedes' && car.volume < 3){
-        return console.log(car)
-    }
-})
+let mersBig = cars.filter((car) => car.producer === 'mercedes' && car.volume < 3);
+console.log(mersBig);
 // - двигун більше 2л + сили більше 250 виробник бмв
 
-let filterHorsePower = cars.filter((car) => {
-    if (car.power > 250 && car.producer === 'bmw' && car.volume > 3){
-        return console.log(car);
-    }
-})
+let filterHorsePower = cars.filter((car) => car.power > 250 && car.producer === 'bmw' && car.volume > 3);
+console.log(filterHorsePower);
 
 // - взять слдующий массив
 let usersWithAddress = [
@@ -230,24 +163,16 @@ let usersWithAddress = [
     {id: 4, name: 'olya', age: 28, status: false, address: {city: 'Lviv', street: 'Shevchenko', number: 90}}]
    // -- отсортировать его по id пользователей
 
-let sortPeoples = usersWithAddress.sort((function (user1, user2) {
-    return user1.id - user2.id;
-}))
+let sortPeoples = usersWithAddress.sort((user1, user2) => user1.id - user2.id);
 console.log(sortPeoples);
 // -- отсортировать его по id пользователей в обратном опрядке
-let sortLatest = usersWithAddress.sort((function (user1, user2) {
-    return user2.id - user1.id;
-}))
+let sortLatest = usersWithAddress.sort((user1, user2) => user2.id - user1.id);
 console.log(sortLatest);
 // -- отсортировать его по возрасту пользователей
-let sortAge = usersWithAddress.sort(function (age1, age2) {
-    return age1.age - age2.age
-})
+let sortAge = usersWithAddress.sort((age1, age2) => age1.age - age2.age);
 console.log(sortAge);
 // -- отсортировать его по возрасту пользователей в обратном порядке
-let sortYear = usersWithAddress.sort(function (age1, age2) {
-    return age2.age - age1.age
-})
+let sortYear = usersWithAddress.sort((age1, age2) => age2.age - age1.age);
 console.log(sortYear);
 // -- отсортировать его по имени пользователей
 function compare( a, b ) {
@@ -259,7 +184,6 @@ function compare( a, b ) {
     }
     return 0;
 }
-
 console.log(usersWithAddress.sort(compare));
 
 // -- отсортировать его по имени пользователей в обратном порядке
@@ -272,7 +196,6 @@ function compare( a, b ) {
     }
     return 0;
 }
-
 console.log(usersWithAddress.sort(compare).reverse());
 // -- отсортировать его по названию улицы  в алфавитном порядке
 function compare( a, b ) {
@@ -287,41 +210,22 @@ function compare( a, b ) {
 
 console.log(usersWithAddress.sort(compare));
 // -- отсортировать его по номеру дома по возрастанию
-let sortNumber = usersWithAddress.sort(function (num1, num2) {
-    return num1.address.number - num2.address.number
-})
-console.log(sortNumber)
+let sortNumber = usersWithAddress.sort((num1, num2) => num1.address.number - num2.address.number);
+console.log(sortNumber);
 // -- отфильтровать (оставить) тех кто младше 30
 
-let young = usersWithAddress.filter(function (a) {
-    if (a.age < 30){
-        return a;
-    }
-})
-console.log(young)
+let young = usersWithAddress.filter((a) => a.age < 30);
+console.log(young);
 // -- отфильтровать (оставить) тех у кого отрицательный статус
-let negative = usersWithAddress.filter(function (a) {
-    if (a.status === false){
-        return a;
-    }
-})
-console.log(negative)
+let negative = usersWithAddress.filter((a) => a.status === false);
+console.log(negative);
 // -- отфильтровать (оставить) тех у кого отрицательный статус и младше 30 лет
-let negativeYoung = usersWithAddress.filter(function (a) {
-    if (a.status === false && a.age < 30){
-        return a;
-    }
-})
+let negativeYoung = usersWithAddress.filter((a) => a.status === false && a.age < 30);
 console.log(negativeYoung)
 // -- отфильтровать (оставить) тех у кого номер дома четный
-let evenNumber = usersWithAddress.filter(function (a) {
-    if (a.address.number % 2 === 0){
-        return a;
-    }
-});
+let evenNumber = usersWithAddress.filter((a) => a.address.number % 2 === 0);
 console.log(evenNumber);
 
-//
 // ===========================
 // ======ДОПОЛНИТЕЛЬНО========
 // ===========================
