@@ -67,6 +67,28 @@ list.addEventListener("click", function (e) {
 // - Создать список комментариев , пример объекта коментария - {title : 'lorem', body:'lorem ipsum dolo sit ameti'}.
 // Вывести список комментариев в документ, каждый в своем блоке.
 //  Добавьте каждому комментарию по кнопке для сворачивания его body.
+
+for (let i = 0; i < 5; i++){
+    let container = document.createElement("div");
+    let headers = document.createElement("h2");
+    headers.innerText = `Header ${i}`;
+    let paragraph = document.createElement("p");
+    paragraph.innerText = `${i} lorem ipsum dolor `;
+    let button = document.createElement("button");
+    button.innerText = `Hide this`;
+    container.appendChild(headers);
+    container.appendChild(paragraph);
+    container.appendChild(button);
+    function hide() {
+        console.log(container)
+        container.style.display = "none"
+    }
+    button.addEventListener("click", hide)
+    document.body.appendChild(container)
+
+}
+
+
 //
 // - створити 2 форми  по 2 інпути в кожній. ствоирити кнопку при кліку на яку считується та виводиться на консоль інформація з цих 2х форм.
 // Кнопка повинна лежати за межами форм (Щоб ьуникнути  перезавантаження сторінки)
@@ -151,8 +173,9 @@ document.body.appendChild(button);
 // // (Додатковачастина для завдання)
 // - Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
 
-let btn1 = document.getElementById("btn1");
-let images = document.getElementsByTagName("img");
+
+// То неможу зробити
+
 
 
 // - Сворити масив не цензцрних слів.
@@ -212,16 +235,23 @@ document.body.appendChild(btn);
 // При клике на пункт оглавления вы должны отправляться к этому пункту в тексте
 const headers = document.getElementsByTagName("h2");
 const content = document.createElement('div');
-const rule = document.createElement("a")
-for (element of headers){
-    rule.innerText = element.innerHTML;
-    rule.style.fontSize = "30px";
-    rule.href = "#";
-    rule.style.textDecoration = "none";
-    content.appendChild(rule)
-}
 document.body.appendChild(content)
+let number = 1;
+for (const each of headers){
+    const rule = document.createElement("a")
+    const lineBreak = document.createElement("br")
+    rule.innerHTML = each.innerText ;
+    rule.style.textDecoration = "none";
+    rule.setAttribute("name", `id${number}`)
+    rule.setAttribute("href",  `#id${number}`);
+    content.appendChild(rule);
+    content.appendChild(lineBreak)
+    number++;
+}
+content.style.position = "absolute";
 
+content.style.top = "5%";
+content.style.right = "5%";
 
 // -- взять массив пользователей
 let users = [
@@ -290,9 +320,6 @@ check3.addEventListener("click", checker);
 
 
 // Данные выводить в документ
-//
-//
-//
 // *****(Прям овердоз с рекурсией) Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
 // при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
 // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
@@ -300,3 +327,17 @@ check3.addEventListener("click", checker);
 //
 //
 // *** При виділені сегменту тексту на сторінці він стає жирний/курсивний/або якось іншим способом змінює свій стан
+
+// const background = document.createElement("div");
+// background.style.background = "gray";
+// background.style.height = "200px";
+// background.style.width = "200px";
+// let text = background.innerText = "Learn Git and GitHub without any code!\n" +
+//     "Using the Hello World guide, you’ll start a branch, write comments, and open a pull request."
+//
+// background.addEventListener("mouseup", function () {
+//     let selectedText = document.getSelection().toString();
+//     let piece = text.includes(selectedText)
+//     text.fontSize = "30px"
+// })
+// document.body.appendChild(background);
