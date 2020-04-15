@@ -180,23 +180,24 @@ const prevButton = document.getElementById('btn1');
 const showImage = document.getElementById("firstImage");
 let index = 0;
 showImage.src = imgArray[index];
-showImage.style.position = "relative";
 prevButton.style = "position: absolute; left: 200px; top: 450px; background: black; color:white; border-radius: 50%; font-size: 50px"
 nextButton.style = "position: absolute; left: 300px; top: 450px; background: black; color:white; border-radius: 50%; font-size: 50px"
 
 nextButton.addEventListener("click",  function () {
-    if (index > 3){
-        index = 0;
+    if (index >= 3){
+        index = -1;
     }
-    showImage.src = imgArray[index];
     index++
+    showImage.src = imgArray[index];
+    console.log(index);
 })
 prevButton.addEventListener("click",  function () {
-    if (index < 0){
-        index = 3;
+    if (index <= 0){
+        index = 4;
     }
-    showImage.src = imgArray[index];
     index--;
+    showImage.src = imgArray[index];
+    console.log(index);
 })
 
 
