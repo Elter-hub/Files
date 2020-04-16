@@ -352,14 +352,21 @@ check3.addEventListener("click", checker);
 // *** При виділені сегменту тексту на сторінці він стає жирний/курсивний/або якось іншим способом змінює свій стан
 
 const background = document.createElement("div");
-background.style.background = "gray";
-background.style.height = "200px";
-background.style.width = "200px";
-let text = background.innerText = "Learn Git and GitHub without any code!\n" +
-    "Using the Hello World guide, you’ll start a branch, write comments, and open a pull request."
+background.style = "width: 200px; height: 200px; background: gray";
+let paragraph = document.createElement('p');
+paragraph.innerHTML = "Learn Git and GitHub without any code! Using the Hello World guide, you’ll start a branch, write comments, and open a pull request."
+let text = paragraph.innerHTML;
+background.appendChild(paragraph);
 
 background.addEventListener("mouseup", function () {
-    let selectedText = document.getSelection().toString();
-    let start = selectedText.substring(selectionStart, selectionEnd)
+    let selectedText = document.getSelection();
+    console.log(selectedText)
+    let start = selectedText.anchorOffset;
+    let end = selectedText.focusOffset;
+    let makeItBold = text.slice(start, end);
+    let bold = document.createElement("b");
+    bold.innerHTML = makeItBold;
+    paragraph.innerHTML = paragraph.innerHTML.replace(`${text.substring(start, end)}`, `<b>${text.substring(start, end)}</b>`)
+    console.log(paragraph)
 })
 document.body.appendChild(background);
