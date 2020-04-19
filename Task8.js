@@ -164,11 +164,7 @@ createUser.onclick = (ev) => {
     }catch (e) {
         TypeError
     }
-    console.log(contentOfLocalStorage);
-    for (let every of contentOfLocalStorage){
-        console.log(every);
-    }
-        let pageContent = document.createElement("div");
+    let pageContent = document.createElement("div");
     pageContent.id = "onlyOne";
 
     if (pageContent.childElementCount === 0) {
@@ -180,7 +176,6 @@ createUser.onclick = (ev) => {
             let deleteButton = document.createElement("button");
             deleteButton.innerText = "delete";
             deleteButton.id = `${eachUserFromLC}`;
-            // console.log(parseInt(deleteButton.id));
             writeUserValue.appendChild(deleteButton);
             deleteButton.onclick = function (ev) {
                 ev.preventDefault();
@@ -188,10 +183,24 @@ createUser.onclick = (ev) => {
                 this.parentNode.remove();
                 localStorage.setItem('users', JSON.stringify(contentOfLocalStorage))
             }
+            let editButton = document.createElement("button");
+            editButton.innerText = "edit";
+            editButton.id = `0${eachUserFromLC}`;
+            editButton.onclick = function (ev){
+                nameOfUser.value = contentOfLocalStorage[eachUserFromLC].name;
+                surnameOfUser.value = contentOfLocalStorage[eachUserFromLC].surname
+                fatherNameOfUser.value = contentOfLocalStorage[eachUserFromLC].fatherName;
+                numberOfUser.value = contentOfLocalStorage[eachUserFromLC].number;
+                postCOdeOfUser.value = contentOfLocalStorage[eachUserFromLC].postCode;
+                firmOfUser.value = contentOfLocalStorage[eachUserFromLC].firm;
+                divisionOfUser.value = contentOfLocalStorage[eachUserFromLC].division;
+                birthdayOfUser.value = contentOfLocalStorage[eachUserFromLC].birthday;
+
+            }
+            writeUserValue.appendChild(editButton);
             pageContent.appendChild(writeUserValue);
         }
     }
 }
     pageContent.children = null;
-
 }
