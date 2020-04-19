@@ -147,6 +147,7 @@ form.style = "position:absolute; right: 30px; top: 20px; background: gray; width
 createUser.onclick = (ev) => {
     ev.preventDefault()
     let contentOfLocalStorage = JSON.parse(localStorage.getItem("users"));
+
     let visitor = new User(nameOfUser.value, surnameOfUser.value, fatherNameOfUser.value, numberOfUser.value, postCOdeOfUser.value,
         firmOfUser.value, divisionOfUser.value, birthdayOfUser.value);
     if (Array.isArray(contentOfLocalStorage) && localStorage.getItem('users') !== null) {
@@ -163,105 +164,34 @@ createUser.onclick = (ev) => {
     }catch (e) {
         TypeError
     }
+    console.log(contentOfLocalStorage);
+    for (let every of contentOfLocalStorage){
+        console.log(every);
+    }
         let pageContent = document.createElement("div");
     pageContent.id = "onlyOne";
 
-    function showContent() {
-        if (pageContent.childElementCount === 0) {
-            for (let eachUserFromLC of contentOfLocalStorage) {
-                let writeUserValue = document.createElement("div");
-                writeUserValue.innerText = JSON.stringify(eachUserFromLC);
-                document.body.appendChild(pageContent);
-                let deleteButton = document.createElement("button");
-                deleteButton.innerText = "delete";
-                writeUserValue.appendChild(deleteButton);
-                deleteButton.onclick = function(ev) {
-                    ev.preventDefault()
-                    this.parentNode.remove();
-                    console.log(ev.target)
-                    console.log(ev.currentTarget)
-                    writeUserValue.parentNode.removeChild(writeUserValue);
-                    localStorage.setItem('users', JSON.stringify(contentOfLocalStorage))
-                }
-                pageContent.appendChild(writeUserValue);
-                // let showAllContentOnPage =
+    if (pageContent.childElementCount === 0) {
+    for (let eachUserFromLC = 0; eachUserFromLC < contentOfLocalStorage.length; eachUserFromLC++) {
+        if (contentOfLocalStorage[eachUserFromLC] != null) {
+            let writeUserValue = document.createElement("div");
+            writeUserValue.innerText = JSON.stringify(contentOfLocalStorage[eachUserFromLC]);
+            document.body.appendChild(pageContent);
+            let deleteButton = document.createElement("button");
+            deleteButton.innerText = "delete";
+            deleteButton.id = `${eachUserFromLC}`;
+            // console.log(parseInt(deleteButton.id));
+            writeUserValue.appendChild(deleteButton);
+            deleteButton.onclick = function (ev) {
+                ev.preventDefault();
+                contentOfLocalStorage[parseInt(deleteButton.id)] = null;
+                this.parentNode.remove();
+                localStorage.setItem('users', JSON.stringify(contentOfLocalStorage))
             }
+            pageContent.appendChild(writeUserValue);
         }
-            pageContent.children = null;
     }
-    showContent();
+}
+    pageContent.children = null;
 
 }
-
-//     showAll.onclick = (ev) => {
-//         showAll.innerText = "Hide all";
-//         contentOfLocalStorage = JSON.parse(localStorage.getItem('users'));
-//         console.log(contentOfLocalStorage)
-//         for (let elemOfArray of contentOfLocalStorage) {
-//             let divForTextAndButton = document.createElement("div");
-//             if (divForTextAndButton.innerText === ''){
-//                 divForTextAndButton.innerText = JSON.stringify(elemOfArray);
-//                 console.log('if worked')
-//             }else {
-//                 divForTextAndButton.innerText = '';
-//                 console.log('else worked')
-//             }
-//             document.body.appendChild(divForTextAndButton);
-//             let deleteButton = document.createElement("button");
-//             deleteButton.innerText = "delete";
-//             divForTextAndButton.appendChild(deleteButton);
-//             deleteButton.onclick = function(ev) {
-//                 this.parentNode.remove();
-//             }
-//             // let showAllContentOnPage =
-//             console.log(ev.target);
-//         }
-//     }
-// }
-// let showAll = document.getElementById('showUser');
-// //
-// //
-// //
-// //
-// //
-// //
-// //
-// // // let userContainer = document.createElement("div");
-// // //
-// // // showAll.onclick = (ev) => {
-// // //     ev.preventDefault()
-// // //     user1 = JSON.parse(localStorage.getItem("users"));
-// // //     if (userContainer.innerText === ''){
-// // //         // for (let i = 0; i < user1.length; i++) {
-// // //             userContainer = document.createElement("div");
-// // //             userContainer.innerText = JSON.stringify(user1[i]);
-// // //             userContainer.id = `${i}`;
-// // //             userContainer.className = "delete";
-// // //             document.body.appendChild(userContainer);
-// // //
-// // //             let delButton = document.createElement('button');
-// // //             delButton.innerText = "delete";
-// // //             userContainer.appendChild(delButton);
-// // //
-// // //             let editButton = document.createElement('button');
-// // //             editButton.innerText = "edit";
-// // //             userContainer.appendChild(editButton);
-// // //
-// // //             console.log("if worked");
-// // //
-// // //             delButton.onclick = function (ev){
-// // //                 ev.preventDefault()
-// // //                 user1.splice(ev.ins, 1);
-// // //                 localStorage.setItem('users', JSON.stringify(user1))
-// // //                 let garbage = document.getElementById(`${i}`);
-// // //                 garbage.parentNode.removeChild(garbage);
-// // //             }
-// // //         // }
-// // //     }else {
-// // //         console.log('else worked')
-// // //         let allContents = document.getElementsByClassName("delete");
-// // //         for (let each of allContents){
-// // //             each.innerText = '';
-// // //         }
-// // //     }
-// // // }
