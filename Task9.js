@@ -21,7 +21,6 @@ function wakeUp(amIStillAlive, cb) {
         } else {
             console.log("Homework doesn't matter to you anymore");
             time = undefined;
-            cb("wakeUp is always true")
         }
     }, 2000)
 }
@@ -133,8 +132,6 @@ function goToSleep(sleepy, cb){
     }, 2000)
 }
 
-
-
 wakeUp(true, (error, time) => {
     if (error) {
         console.log(error);
@@ -208,3 +205,157 @@ wakeUp(true, (error, time) => {
         })
     }
 })
+// ================================================================================================================
+// ================================================================================================================
+// ================================================================================================================
+console.log("24 h")
+let time = 24;
+
+
+function wakeUp(amIStillAlive) {
+    return new Promise ((resolve, reject) => {
+        setTimeout(() => {
+            if (time) {
+                console.log("One more successfully survived day in quarantine");
+                time -= 10;
+                resolve(time);
+            } else {
+                console.log("Homework doesn't matter to you anymore");
+                time = undefined;
+                reject('')
+            }
+        }, 1000)
+    })
+}
+
+let money = 300;
+function goToStore(needSomething){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (money > 200){
+                console.log("Buy some bread, cookies and cigarettes");
+                money -= 120;
+                time -= 0.5;
+                resolve(time);
+            }else {
+                console.log("Buy at least cigarettes, you will find food in refrigerator");
+                time -= 0.5;
+                money -= 50;
+                reject('No money no honey))')
+            }
+        },1100)
+})
+}
+function eat(hungry) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (hungry) {
+                console.log("Heat something from fridge or make eggs");
+                time -= 1;
+                resolve(time);
+            } else {
+                console.log("Make a coffee and eat few cookies")
+                time -= 0.5;
+                resolve(time)
+            }
+        }, 1200)
+    })
+}
+
+function playDota2(addicted){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (addicted) {
+                console.log("Omg you're 25years old child");
+                time -= 2;
+                resolve(time);
+            } else {
+                console.log("What are you going to do all day?")
+                time -= 0.5;
+                reject("")
+            }
+        }, 1300)
+    })
+}
+function learn(shouldI){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (shouldI) {
+                console.log("Hmmm you are going to do smth useful");
+                time -= 2;
+                resolve(time);
+            } else {
+                console.log("Go for a walk programing isn't for you")
+                time -= 2;
+                resolve(time)
+            }
+        }, 1400)
+    })
+}
+function watchVideos(youtube){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (youtube) {
+                console.log("Watch something useful");
+                time -= 1;
+                resolve(time);
+            } else {
+                console.log("Watch at least smth related to programing");
+                time -= 1;
+                reject("")
+            }
+        }, 1500)
+    })
+}
+function takeNap(tired) {
+    return new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+            if (tired) {
+                console.log("You deserved some rest");
+                time -= 1;
+                resolve(time)
+            } else {
+                console.log("Waste your time!")
+                time -= 1;
+                reject("")
+            }
+        }, 1600)
+    })
+}
+function oktenWebLecture (weekDay){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (weekDay) {
+                console.log("Quickly make tea and try to really listen what they teach you")
+                time -= 2;
+                resolve(time);
+            } else {
+                console.log("do whatever you want!")
+                time -= 2;
+                reject("");
+            }
+        }, 1700)
+    })
+}
+function goToSleep(sleepy){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (sleepy) {
+                console.log("Sleep like a log");
+                time -= 2;
+                resolve(time);
+            } else {
+                time -= 2;
+                reject();
+            }
+        }, 1800)
+    })
+}
+
+Promise.all([wakeUp(true), goToStore(true), eat(false),
+    playDota2(true), learn(false), learn(true), watchVideos(true),
+    takeNap(true), oktenWebLecture(true), goToSleep(true)])
+    .then(value => {
+        console.log(value);
+    })
